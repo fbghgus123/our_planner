@@ -17,11 +17,32 @@ class _TimeTableState extends State<TimeTable> {
           color: Color(0xffbfbfbf),
         )
       ),
-      child: Expanded(
-        child: Table(
-
-        ),
-      ),
+      child: Column(
+        children: [
+          for(var i=0;i<24;i++)
+            Expanded(
+              child: Row(children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(i.toString(), style: TextStyle(color: Color(0xffbfbfbf)))
+                  ),
+                ),
+                for(var j=0;j<6;j++)
+                  Expanded(
+                    flex: 3, 
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Color(0xffECECEC),
+                        )
+                      ),
+                    ))
+              ]),
+            )
+        ],
+      )
     );
   }
 }
