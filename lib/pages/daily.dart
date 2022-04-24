@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import '../widget/daily/date_widget.dart';
+import '../widget/daily/daily_memo.dart';
+import '../widget/daily/daily_schedule.dart';
+import '../widget/daily/daily_check.dart';
+import '../widget/daily/daily_todo.dart';
+import '../widget/daily/daily_timetable.dart';
 
-class Daily extends StatelessWidget {
-  const Daily({Key? key}) : super(key: key);
+class Daily extends StatefulWidget {
+  const Daily({ Key? key }) : super(key: key);
 
+  @override
+  State<Daily> createState() => _DailyState();
+}
+
+class _DailyState extends State<Daily> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
         child: Column(children: [
+          
           // 달력 내리기
           Container(
             height: 30,
@@ -20,10 +33,7 @@ class Daily extends StatelessWidget {
           // 상단 날짜 + D-day
           Padding(
             padding: EdgeInsets.only(top: 10.0),
-            child: Container(
-              height: 70,
-              color: Colors.red,
-            ),
+            child: DateWidget()
           ),
       
           Padding(
@@ -31,8 +41,7 @@ class Daily extends StatelessWidget {
             child: Column(children: [
               // 메모
               Container(
-                height: 70,
-                color: Colors.blue,
+                child: DailyMemo(),
               ),
       
               // 스케쥴, 체크리스트 레이아웃
@@ -46,15 +55,15 @@ class Daily extends StatelessWidget {
                         padding: EdgeInsets.only(right: 10.0),
                         child: Container(
                           height: screenHeight * 0.15,
-                          color: Colors.pink,
-                        ),
+                          child: Schedule()
+                        )
                       ),
                     ),
                     Expanded(
                       flex: 3,
                       child: Container(
                         height: screenHeight * 0.15,
-                        color: Colors.green,
+                        child: CheckList(),
                       ),
                     ),
                   ],
@@ -72,7 +81,7 @@ class Daily extends StatelessWidget {
                         padding: EdgeInsets.only(right: 10.0),
                         child: Container(
                           height: screenHeight * 0.6,
-                          color: Colors.purple,
+                          child: Todo(),
                         ),
                       ),
                     ),
@@ -80,7 +89,7 @@ class Daily extends StatelessWidget {
                       flex: 3,
                       child: Container(
                         height: screenHeight * 0.6,
-                        color: Colors.yellow,
+                        child: TimeTable(),
                       ),
                     )
                   ],
@@ -92,11 +101,20 @@ class Daily extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Container(
-                    color: Colors.grey,
-                    height: 40,
-                    width: 130,
-                  )],
+                  children: [
+                    Container(
+                      alignment: Alignment.center,                  
+                      color: Colors.grey,
+                      height: 40,
+                      width: 130,
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(
+                          color: Colors.white
+                        )
+                      ),
+                    ),
+                  ],
                 ),
               )
             ]),
