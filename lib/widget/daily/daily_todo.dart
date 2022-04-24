@@ -11,17 +11,22 @@ class Todo extends StatefulWidget {
 class _TodoState extends State<Todo> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: Color(0xffbfbfbf),
-        )),
-      child: Column(
-        children: [
-          TodoSchedule(),
-          TodoSchedule(),
-        ],
+    return GestureDetector(
+      onTap: () {
+        showAlertDialog(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+              color: Color(0xffbfbfbf),
+            )),
+        child: Column(
+          children: [
+            TodoSchedule(),
+            TodoSchedule(),
+          ],
+        ),
       ),
     );
   }
@@ -34,10 +39,7 @@ void showAlertDialog(BuildContext context) async {
     builder: (BuildContext context) {
       return AlertDialog(
         content: Container(
-          width: 500,
-          height: 500,
-          child: Text("Select button you want")
-        ),
+            width: 500, height: 500, child: Text("Select button you want")),
         actions: <Widget>[
           FlatButton(
             child: Text('OK'),

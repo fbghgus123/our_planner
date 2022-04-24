@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/daily/timetable_provider.dart';
 import '../widget/daily/date_widget.dart';
 import '../widget/daily/daily_memo.dart';
 import '../widget/daily/daily_schedule.dart';
@@ -68,31 +71,33 @@ class _DailyState extends State<Daily> {
                     ),
                   ],
                 ),
-              ),
-      
+              ),      
               // 투두리스트, 타임테이블
-              Padding(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 10.0),
-                        child: Container(
-                          height: screenHeight * 0.6,
-                          child: Todo(),
+              ChangeNotifierProvider(
+                create: (_) => TimeTableProvider(),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 10.0),
+                          child: Container(
+                            height: screenHeight * 0.6,
+                            child: Todo(),
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        height: screenHeight * 0.6,
-                        child: TimeTable(),
-                      ),
-                    )
-                  ],
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          height: screenHeight * 0.6,
+                          child: TimeTable(),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
       
