@@ -34,8 +34,8 @@ class _TodoScheduleState extends State<TodoSchedule> {
   bool _check = false;
   @override
   Widget build(BuildContext context) {
-    return Draggable<Schedule>(
-      data: tmpData,
+    return Draggable<List<int?>>(
+      data: [tmpData.id, 0],
       feedback: Container(
         width: 300,
         height: 80,

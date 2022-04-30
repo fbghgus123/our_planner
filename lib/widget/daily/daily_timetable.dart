@@ -32,7 +32,7 @@ class _TimeTableState extends State<TimeTable> {
                   for (var j = 0; j < 6; j++)
                     Expanded(
                       flex: 3,
-                      child: TimeTableCell(row: i, col: j)
+                      child: TimeTableCell(position: i*6 + j)
                     )
                 ]),
               )

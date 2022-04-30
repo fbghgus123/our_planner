@@ -6,8 +6,9 @@ class Schedule {
   String content;
   Color? color;
   String? date;
-  String? startTime;
-  String endTime;
+  int start;
+  int end;
+  bool onTable;
   bool check;
 
   Schedule(
@@ -16,7 +17,8 @@ class Schedule {
       this.content = "",
       this.color,
       this.date,
-      this.startTime = "",
-      this.endTime = "",
+      this.start = 0,
+      this.end = 0,
+      this.onTable = false,
       this.check = false});
 }

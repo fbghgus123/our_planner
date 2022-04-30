@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/daily/timetable_provider.dart';
+import '../provider/daily/todoProvider.dart';
 import '../widget/daily/date_widget.dart';
 import '../widget/daily/daily_memo.dart';
 import '../widget/daily/daily_schedule.dart';
@@ -73,8 +74,11 @@ class _DailyState extends State<Daily> {
                 ),
               ),      
               // 투두리스트, 타임테이블
-              ChangeNotifierProvider(
-                create: (_) => TimeTableProvider(),
+              MultiProvider(
+                providers: [
+                  ChangeNotifierProvider(create: (context) => TimeTableProvider()),
+                  ChangeNotifierProvider(create: (context) => TodoProvider())
+                ],
                 child: Padding(
                   padding: EdgeInsets.only(top: 10.0),
                   child: Row(

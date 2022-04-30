@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import '../../model/schedule.dart';
 
 class TimeTableProvider extends ChangeNotifier {
-  List<List<Color?>> _timetable = List<List<Color?>>.generate(
-      24, (index) => List<Color?>.generate(6, (index) => null));
+  List<int?> _timetable = List<int?>.generate(144, (index) => null);
 
-  List<List<Color?>> get timetable => _timetable;
+  List<int?> get timetable => _timetable;
 
-  void changeColor(int i, int j, Color? color) {
-    _timetable[i][j] = color;
+  void changeId(Map<int, Schedule> todoList) {
+    _timetable = List<int?>.generate(144, (index) => null);
+    todoList.forEach((key, todo) {
+      for (var time = todo.start; time <= todo.end; time++) {
+        _timetable[time] = todo.id;
+      }
+    });
     notifyListeners();
   }
 }
