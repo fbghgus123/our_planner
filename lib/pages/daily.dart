@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/daily/timetable_provider.dart';
-import '../provider/daily/todoProvider.dart';
+import '../provider/daily/todo_provider.dart';
 import '../widget/daily/date_widget.dart';
 import '../widget/daily/daily_memo.dart';
 import '../widget/daily/daily_schedule.dart';
@@ -47,7 +47,7 @@ class _DailyState extends State<Daily> {
               Container(
                 child: DailyMemo(),
               ),
-      
+              
               // 스케쥴, 체크리스트 레이아웃
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),

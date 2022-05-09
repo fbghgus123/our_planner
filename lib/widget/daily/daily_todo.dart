@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:our_planner/provider/daily/todo_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../../model/schedule.dart';
 import 'daily_todo_schedule.dart';
 
 class Todo extends StatefulWidget {
@@ -9,52 +13,27 @@ class Todo extends StatefulWidget {
 }
 
 class _TodoState extends State<Todo> {
+  late TodoProvider _todoProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    _todoProvider = Provider.of<TodoProvider>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showAlertDialog(context);
-      },
-      child: Container(
+    List<Widget> _content = _todoProvider.todoList.entries
+        .map((e) => TodoSchedule(todoData: e.value)).toList();
+
+    return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(
               color: Color(0xffbfbfbf),
             )),
         child: Column(
-          children: [
-            TodoSchedule(),
-            TodoSchedule(),
-          ],
-        ),
-      ),
-    );
+          children: _content,
+        ));
   }
-}
-
-void showAlertDialog(BuildContext context) async {
-  await showDialog(
-    context: context,
-    barrierDismissible: true, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: Container(
-            width: 500, height: 500, child: Text("Select button you want")),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('OK'),
-            onPressed: () {
-              Navigator.pop(context, "OK");
-            },
-          ),
-          FlatButton(
-            child: Text('Cancel'),
-            onPressed: () {
-              Navigator.pop(context, "Cancel");
-            },
-          ),
-        ],
-      );
-    },
-  );
 }

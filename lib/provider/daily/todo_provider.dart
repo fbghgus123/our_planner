@@ -11,12 +11,30 @@ class TodoProvider extends ChangeNotifier {
       color: Color(0xfff08f92),
       date: "2022-02-22",
     ),
+    2: Schedule(
+      id: 2,
+      title: "물리",
+      content: "양자역학 부수기",
+      color: Color(0xffFBE079),
+      date: "2022-02-22",
+    ),
+    3: Schedule(
+      id: 3,
+      title: "컴퓨터",
+      content: "파이썬 알고리즘",
+      color: Color(0xffAAD993),
+      date: "2022-02-22",
+    ),
   };
 
-  Map<int, Schedule> get todoList => _todoList;
+  List<List<int>> _todoOrder = [
+    [1, 2, 3]
+  ];
 
-  void changeOnTable(
-      int? id, bool value, int start, int end) {
+  Map<int, Schedule> get todoList => _todoList;
+  List<List<int>> get todoOrder => _todoOrder;
+
+  void changeOnTable(int? id, bool value, int start, int end) {
     _todoList[id]!.onTable = value;
     _todoList[id]!.start = start;
     _todoList[id]!.end = end;

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import './pages/daily.dart';
+import './pages/monthly.dart';
 
 void main() {
   runApp(const Home());
