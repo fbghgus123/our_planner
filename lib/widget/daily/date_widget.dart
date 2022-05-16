@@ -4,11 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../pages/monthly.dart';
+import '../../provider/monthly/date_provider.dart';
 import '../../provider/daily/date_provider.dart';
 
 class DateWidget extends StatelessWidget {
   DateWidget({Key? key}) : super(key: key);
-  List<String> weekName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  List<String> weekName = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   late DateProvider _dateProvider;
 
   // 폰트 스타일 설정
@@ -23,7 +24,10 @@ class DateWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Monthly()));
+            context, MaterialPageRoute(builder: (context) => ChangeNotifierProvider(
+              create: (_) => MonthlyDateProvider(selectDate: _dateProvider.selectDate),
+              child: Monthly(),
+            )));
       },
       child: Container(
         height: 70,

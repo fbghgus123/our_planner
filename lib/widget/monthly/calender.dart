@@ -15,7 +15,7 @@ class Calender extends StatefulWidget {
 
 class _CalenderState extends State<Calender> {
   late MonthlyDateProvider _dateProvider;
-  late NavigatePage _navigatePage;
+  late NavigateController _navigateController;
 
   List<String> weekName = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   TextStyle _dateStyle = GoogleFonts.unna(
@@ -24,7 +24,7 @@ class _CalenderState extends State<Calender> {
   @override
   Widget build(BuildContext context) {
     _dateProvider = Provider.of<MonthlyDateProvider>(context, listen: true);
-    _navigatePage = NavigatePage(context);
+    _navigateController = NavigateController(context);
 
     DateTime selectDate = _dateProvider.selectDate;
     DateTime selectMonth = _dateProvider.selectMonth;
@@ -40,6 +40,9 @@ class _CalenderState extends State<Calender> {
               child: Row(
                 children: [
                   GestureDetector(
+                    onTap: () {
+                      _navigateController.goToBack();
+                    },
                     child: Container(
                         padding: EdgeInsets.only(left: 20),
                         child: Icon(Icons.west, color: Colors.white)),
@@ -77,7 +80,7 @@ class _CalenderState extends State<Calender> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      _navigatePage.goToDaily();
+                      _navigateController.goToDaily();
                     },
                     child: Container(
                         padding: EdgeInsets.only(right: 20),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MonthlyDateProvider extends ChangeNotifier {
-  DateTime _selectDate =
-      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-  DateTime _selectMonth =
-      DateTime(DateTime.now().year, DateTime.now().month, 1);
+  late DateTime _selectDate;
+  late DateTime _selectMonth;
+
+  MonthlyDateProvider({DateTime? selectDate}) {
+    _selectDate = selectDate ??
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    _selectMonth = DateTime(_selectDate.year, _selectDate.month, 1);
+  }
 
   DateTime get selectDate => _selectDate;
   DateTime get selectMonth => _selectMonth;
