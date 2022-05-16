@@ -10,7 +10,9 @@ class TimeTableProvider extends ChangeNotifier {
     _timetable = List<int?>.generate(144, (index) => null);
     todoList.forEach((key, todo) {
       for (var time = todo.start; time <= todo.end; time++) {
-        _timetable[time] = todo.id;
+        if (todo.onTable) {
+          _timetable[time] = todo.id;
+        }
       }
     });
     notifyListeners();

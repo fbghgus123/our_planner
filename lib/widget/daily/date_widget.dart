@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:date_format/date_format.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import '../../pages/monthly.dart';
+import '../../provider/daily/date_provider.dart';
 
 class DateWidget extends StatelessWidget {
   DateWidget({Key? key}) : super(key: key);
+  List<String> weekName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  late DateProvider _dateProvider;
 
   // 폰트 스타일 설정
   TextStyle _textStyle = GoogleFonts.unna(
@@ -11,9 +17,13 @@ class DateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _dateProvider = Provider.of<DateProvider>(context, listen: true);
+    DateTime date = _dateProvider.selectDate;
+
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Monthly()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Monthly()));
       },
       child: Container(
         height: 70,
@@ -25,7 +35,7 @@ class DateWidget extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               child: Text(
-                "2022.02.22 Tue",
+                formatDate(date, [yyyy, '.', mm, '.', 'dd', ' ']) + weekName[date.weekday],
                 style: _textStyle,
               ),
             ),

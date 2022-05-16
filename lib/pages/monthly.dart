@@ -14,7 +14,7 @@ class Monthly extends StatelessWidget {
         child: Column(
           children: [
             ChangeNotifierProvider(
-              create: (_) => DateProvider(),
+              create: (_) => MonthlyDateProvider(),
               child: Calender())
           ],
         )

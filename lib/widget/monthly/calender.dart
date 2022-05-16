@@ -3,6 +3,7 @@ import 'package:date_format/date_format.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../controller/monthly/navigate_page.dart';
 import '../../provider/monthly/date_provider.dart';
 
 class Calender extends StatefulWidget {
@@ -13,14 +14,17 @@ class Calender extends StatefulWidget {
 }
 
 class _CalenderState extends State<Calender> {
-  late DateProvider _dateProvider;
+  late MonthlyDateProvider _dateProvider;
+  late NavigatePage _navigatePage;
+
   List<String> weekName = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  TextStyle _textStyle = GoogleFonts.unna(
+  TextStyle _dateStyle = GoogleFonts.unna(
       fontSize: 36, fontWeight: FontWeight.w700, color: Colors.white);
 
   @override
   Widget build(BuildContext context) {
-    _dateProvider = Provider.of<DateProvider>(context, listen: true);
+    _dateProvider = Provider.of<MonthlyDateProvider>(context, listen: true);
+    _navigatePage = NavigatePage(context);
 
     DateTime selectDate = _dateProvider.selectDate;
     DateTime selectMonth = _dateProvider.selectMonth;
@@ -35,6 +39,11 @@ class _CalenderState extends State<Calender> {
               color: Color(0xff97afc9),
               child: Row(
                 children: [
+                  GestureDetector(
+                    child: Container(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Icon(Icons.west, color: Colors.white)),
+                  ),
                   Expanded(
                       child: Container(
                     height: 100,
@@ -51,7 +60,7 @@ class _CalenderState extends State<Calender> {
                     alignment: Alignment.center,
                     child: Text(
                       formatDate(selectMonth, [yyyy, '.', mm]),
-                      style: _textStyle,
+                      style: _dateStyle,
                     ),
                   ),
                   Expanded(
@@ -65,7 +74,15 @@ class _CalenderState extends State<Calender> {
                           child: Icon(Icons.arrow_forward_ios,
                               color: Colors.white)),
                     ),
-                  )
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _navigatePage.goToDaily();
+                    },
+                    child: Container(
+                        padding: EdgeInsets.only(right: 20),
+                        child: Icon(Icons.check, color: Colors.white)),
+                  ),
                 ],
               ),
             ),
@@ -95,7 +112,6 @@ class _CalenderState extends State<Calender> {
                   // 날짜 표시
                   DateTime date = start.add(Duration(days: index));
                   String dateForm = formatDate(date, [d]);
-                  GlobalKey tmpKey = GlobalKey();
                   // 날짜 컨테이너
                   return GestureDetector(
                     onTap: () {

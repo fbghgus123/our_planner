@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './pages/daily.dart';
 import './pages/monthly.dart';
+import './provider/daily/date_provider.dart';
 
 void main() {
   runApp(const Home());
@@ -14,7 +15,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Daily()
+      home: ChangeNotifierProvider(
+        create: (_) => DateProvider(),
+        child: Daily()
+      )
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DateProvider extends ChangeNotifier {
+class MonthlyDateProvider extends ChangeNotifier {
   DateTime _selectDate =
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
   DateTime _selectMonth =

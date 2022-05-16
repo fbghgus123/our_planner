@@ -32,10 +32,33 @@ class _TodoScheduleState extends State<TodoSchedule> {
   Widget build(BuildContext context) {
     return Draggable<List<int?>>(
       data: [todoData.id, 0],
-      feedback: Container(
-        width: 300,
-        height: 80,
-        color: todoData.color,
+      feedback: Opacity(
+        opacity: 0.4,
+        child: Container(
+          width: 300,
+          child: Row(children: [
+            Container(
+              alignment: Alignment.center,
+              width: 30,
+              height: 80,
+              decoration: new BoxDecoration(
+                color: todoData.color,
+                shape: BoxShape.circle,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 25),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(todoData.title, style: _titleTextStyle),
+                  Text(todoData.content, style: _subTitleTextStyle)
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
       child: SizedBox(
         height: 80,
