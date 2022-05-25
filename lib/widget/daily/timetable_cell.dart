@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_planner/provider/daily/todo_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/schedule.dart';
+import '../../model/todo.dart';
 import '../../provider/daily/timetable_provider.dart';
 
 class TimeTableCell extends StatefulWidget {
@@ -25,17 +25,17 @@ class _TimeTableCellState extends State<TimeTableCell> {
   Widget build(BuildContext context) {
     _timeTableProvider = Provider.of<TimeTableProvider>(context, listen: true);
     _todoProvider = Provider.of<TodoProvider>(context, listen: true);
-    Schedule? _todo =
+    Todo? _todo =
         _todoProvider.todoList[_timeTableProvider.timetable[position]];
 
     Widget draggableCell(int num) {
-      return Draggable<List<int?>>(
+      return Draggable<List<dynamic?>>(
         data: [_todo?.id, num],
         feedback: Container(
-            width: 50, height: 50, color: _todo?.color?.withOpacity(0.5)),
+            width: 50, height: 50, color: Color(_todo?.color ?? 0xff9e9e9e).withOpacity(0.5)),
         child: Container(
           decoration: BoxDecoration(
-              color: _todo?.color,
+              color: Color(_todo?.color ?? 0xff9e9e9e),
               border: Border.all(
                 width: 0.03,
               )),
@@ -43,7 +43,7 @@ class _TimeTableCellState extends State<TimeTableCell> {
       );
     }
 
-    return DragTarget<List<int?>>(
+    return DragTarget<List<dynamic?>>(
       builder: (
         BuildContext context,
         List<dynamic> accepted,
@@ -60,25 +60,25 @@ class _TimeTableCellState extends State<TimeTableCell> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    color: _todo?.color,
+                    color: Color(_todo?.color ?? 0),
                     border: Border.all(
                       width: 0.03,
                     )),
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: overayColor ?? null,
+                  color: overayColor,
                 ),
               )
             ],
           );
         }
       },
-      onAccept: (List<int?> data) {
+      onAccept: (List<dynamic?> data) {
         setState(() {
           overayColor = null;
         });
-        Schedule? prev = _todoProvider.todoList[data[0]];
+        Todo? prev = _todoProvider.todoList[data[0]];
         if (data[1] == 0 && !prev!.onTable) {
           _todoProvider.changeOnTable(data[0], true, position, position);
           // 겹침
@@ -103,10 +103,9 @@ class _TimeTableCellState extends State<TimeTableCell> {
             _todoProvider.changeOnTable(data[0], true, prev.start, prev.start);
           }
         }
-        _timeTableProvider.changeId(_todoProvider.todoList);
       },
-      onWillAccept: (List<int?>? data) {
-        Schedule? prev = _todoProvider.todoList[data?[0]];
+      onWillAccept: (List<dynamic?>? data) {
+        Todo? prev = _todoProvider.todoList[data?[0]];
         // 타임테이블 배치 유효한지 확인
         bool checkAvail(int start, int end) {
           for (var i = start; i < end; i++) {

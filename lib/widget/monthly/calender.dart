@@ -79,12 +79,10 @@ class _CalenderState extends State<Calender> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      _navigateController.goToDaily();
-                    },
+                    onTap: () {},
                     child: Container(
                         padding: EdgeInsets.only(right: 20),
-                        child: Icon(Icons.check, color: Colors.white)),
+                        child: Icon(Icons.add, color: Colors.white)),
                   ),
                 ],
               ),
@@ -118,6 +116,9 @@ class _CalenderState extends State<Calender> {
                   // 날짜 컨테이너
                   return GestureDetector(
                     onTap: () {
+                      if (_dateProvider.selectDate == date) {
+                        _navigateController.goToDaily();
+                      }
                       _dateProvider.changeDate(date);
                     },
                     child: Container(

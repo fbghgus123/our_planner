@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../../model/schedule.dart';
+
+import '../../model/todo.dart';
+
+TextStyle _titleTextStyle = GoogleFonts.poppins(
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+  color: Color(0xff57636C),
+);
+
+TextStyle _subTitleTextStyle = GoogleFonts.poppins(
+  fontSize: 20,
+  fontWeight: FontWeight.w300,
+  color: Color(0xff57636C),
+);
 
 class TodoSchedule extends StatefulWidget {
-  final Schedule todoData;
-  TodoSchedule({Key? key, required Schedule this.todoData}) : super(key: key);
+  final Todo todoData;
+  TodoSchedule({Key? key, required Todo this.todoData}) : super(key: key);
 
   @override
   State<TodoSchedule> createState() => _TodoScheduleState(todoData);
 }
 
 class _TodoScheduleState extends State<TodoSchedule> {
-  final Schedule todoData;
-  _TodoScheduleState(Schedule this.todoData);
-
-  TextStyle _titleTextStyle = GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-    color: Color(0xff57636C),
-  );
-
-  TextStyle _subTitleTextStyle = GoogleFonts.poppins(
-    fontSize: 20,
-    fontWeight: FontWeight.w300,
-    color: Color(0xff57636C),
-  );
+  final Todo todoData;
+  _TodoScheduleState(Todo this.todoData);
 
   bool _check = false;
   @override
   Widget build(BuildContext context) {
-    return Draggable<List<int?>>(
+    return Draggable<List<dynamic?>>(
       data: [todoData.id, 0],
       feedback: Opacity(
         opacity: 0.4,
@@ -42,7 +43,7 @@ class _TodoScheduleState extends State<TodoSchedule> {
               width: 30,
               height: 80,
               decoration: new BoxDecoration(
-                color: todoData.color,
+                color: Color(todoData.color ?? 0xff9e9e9e),
                 shape: BoxShape.circle,
               ),
             ),
@@ -74,7 +75,7 @@ class _TodoScheduleState extends State<TodoSchedule> {
                 width: 30,
                 height: 80,
                 decoration: new BoxDecoration(
-                  color: todoData.color,
+                  color: Color(todoData.color ?? 0xff9e9e9e),
                   shape: BoxShape.circle,
                 ),
               ),

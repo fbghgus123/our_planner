@@ -50,20 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCb4n3vCk5WymFfPItF3XES4fIVMFY_5Co',
-    appId: '1:1021600377852:android:fd3e89634b825d84d6e079',
-    messagingSenderId: '1021600377852',
-    projectId: 'our-planner-bd1b5',
-    storageBucket: 'our-planner-bd1b5.appspot.com',
+    apiKey: 'AIzaSyBUsOiBy8-8khlqvBZUXlVURLALYv3cn_Q',
+    appId: '1:920271087857:android:2d8e52fb237fba9759a150',
+    messagingSenderId: '920271087857',
+    projectId: 'ourplanner-cc4f6',
+    databaseURL: 'https://ourplanner-cc4f6-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'ourplanner-cc4f6.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBg43j6GxnFzwC5qxuzwojRVaUVKQGzlac',
-    appId: '1:1021600377852:ios:02a5f989b09f5f0ed6e079',
-    messagingSenderId: '1021600377852',
-    projectId: 'our-planner-bd1b5',
-    storageBucket: 'our-planner-bd1b5.appspot.com',
-    iosClientId: '1021600377852-u8nic2lfdpjn1paqk7skdk0v0s5jvm0a.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAmU7j3qw1VsmvbRhfzZ2IqY4mAgRWy2s0',
+    appId: '1:920271087857:ios:206192c057ba24cd59a150',
+    messagingSenderId: '920271087857',
+    projectId: 'ourplanner-cc4f6',
+    databaseURL: 'https://ourplanner-cc4f6-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'ourplanner-cc4f6.appspot.com',
+    iosClientId: '920271087857-jdodft0jgio5d6t9rgitt2r0ttb385ij.apps.googleusercontent.com',
     iosBundleId: 'com.example.ourplanner.ourPlanner',
   );
 }

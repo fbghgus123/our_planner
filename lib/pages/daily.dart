@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../provider/daily/timetable_provider.dart';
 import '../provider/daily/todo_provider.dart';
+import '../provider/daily/date_provider.dart';
 import '../widget/daily/date_widget.dart';
 import '../widget/daily/daily_memo.dart';
 import '../widget/daily/daily_schedule.dart';
@@ -11,23 +12,26 @@ import '../widget/daily/daily_todo.dart';
 import '../widget/daily/daily_timetable.dart';
 
 class Daily extends StatefulWidget {
-  const Daily({ Key? key }) : super(key: key);
+  const Daily({Key? key}) : super(key: key);
 
   @override
   State<Daily> createState() => _DailyState();
 }
 
 class _DailyState extends State<Daily> {
+  late DateProvider _dateProvider;
+
   @override
   Widget build(BuildContext context) {
+    DateProvider _dateProvider =
+        Provider.of<DateProvider>(context, listen: true);
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    
+
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+        body: SafeArea(
+      child: SingleChildScrollView(
         child: Column(children: [
-          
           // 달력 내리기
           Container(
             height: 30,
@@ -35,11 +39,8 @@ class _DailyState extends State<Daily> {
           ),
 
           // 상단 날짜 + D-day
-          Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: DateWidget()
-          ),
-      
+          Padding(padding: EdgeInsets.only(top: 10.0), child: DateWidget()),
+
           Padding(
             padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Column(children: [
@@ -47,7 +48,7 @@ class _DailyState extends State<Daily> {
               Container(
                 child: DailyMemo(),
               ),
-              
+
               // 스케쥴, 체크리스트 레이아웃
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
@@ -56,12 +57,9 @@ class _DailyState extends State<Daily> {
                     Expanded(
                       flex: 5,
                       child: Padding(
-                        padding: EdgeInsets.only(right: 10.0),
-                        child: Container(
-                          height: screenHeight * 0.15,
-                          child: Schedule()
-                        )
-                      ),
+                          padding: EdgeInsets.only(right: 10.0),
+                          child: Container(
+                              height: screenHeight * 0.15, child: Schedule())),
                     ),
                     Expanded(
                       flex: 3,
@@ -72,12 +70,16 @@ class _DailyState extends State<Daily> {
                     ),
                   ],
                 ),
-              ),      
+              ),
               // 투두리스트, 타임테이블
               MultiProvider(
                 providers: [
-                  ChangeNotifierProvider(create: (context) => TimeTableProvider()),
-                  ChangeNotifierProvider(create: (context) => TodoProvider())
+                  ChangeNotifierProvider(
+                      create: (context) => TodoProvider("123", _dateProvider.selectDate)),
+                  ChangeNotifierProxyProvider<TodoProvider, TimeTableProvider>(
+                    update: (context, todo, previous) => TimeTableProvider(todo.todoList),
+                    create: (context) => TimeTableProvider(null),
+                  )
                 ],
                 child: Padding(
                   padding: EdgeInsets.only(top: 10.0),
@@ -85,12 +87,10 @@ class _DailyState extends State<Daily> {
                     children: [
                       Expanded(
                         flex: 5,
-                        child: Padding(
+                        child: Container(
                           padding: EdgeInsets.only(right: 10.0),
-                          child: Container(
-                            height: screenHeight * 0.6,
-                            child: Todo(),
-                          ),
+                          height: screenHeight * 0.6,
+                          child: Todo(),
                         ),
                       ),
                       Expanded(
@@ -104,7 +104,7 @@ class _DailyState extends State<Daily> {
                   ),
                 ),
               ),
-      
+
               // 제출 버튼
               Padding(
                 padding: EdgeInsets.only(top: 10.0),
@@ -112,16 +112,12 @@ class _DailyState extends State<Daily> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      alignment: Alignment.center,                  
+                      alignment: Alignment.center,
                       color: Colors.grey,
                       height: 40,
                       width: 130,
-                      child: Text(
-                        "Submit",
-                        style: TextStyle(
-                          color: Colors.white
-                        )
-                      ),
+                      child:
+                          Text("Submit", style: TextStyle(color: Colors.white)),
                     ),
                   ],
                 ),
@@ -129,7 +125,7 @@ class _DailyState extends State<Daily> {
             ]),
           )
         ]),
-          ),
-      ));
+      ),
+    ));
   }
 }

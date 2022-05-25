@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "1021600377852",
-    "project_id": "our-planner-bd1b5",
-    "storage_bucket": "our-planner-bd1b5.appspot.com"
+    "project_number": "920271087857",
+    "firebase_url": "https://ourplanner-cc4f6-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ourplanner-cc4f6",
+    "storage_bucket": "ourplanner-cc4f6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1021600377852:android:fd3e89634b825d84d6e079",
+        "mobilesdk_app_id": "1:920271087857:android:2d8e52fb237fba9759a150",
         "android_client_info": {
           "package_name": "com.example.ourplanner.our_planner"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1021600377852-n9c527llup7ittiqhgpbg1r99ammr9q0.apps.googleusercontent.com",
+          "client_id": "920271087857-juio78orq0ec7c9halqlmv4aif1mn251.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCb4n3vCk5WymFfPItF3XES4fIVMFY_5Co"
+          "current_key": "AIzaSyBUsOiBy8-8khlqvBZUXlVURLALYv3cn_Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1021600377852-n9c527llup7ittiqhgpbg1r99ammr9q0.apps.googleusercontent.com",
+              "client_id": "920271087857-juio78orq0ec7c9halqlmv4aif1mn251.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "920271087857-jdodft0jgio5d6t9rgitt2r0ttb385ij.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ourplanner.ourPlanner"
+              }
             }
           ]
         }

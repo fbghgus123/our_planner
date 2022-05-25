@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
-import '../../model/schedule.dart';
+
+import '../../model/todo.dart';
+import '../../provider/daily/todo_provider.dart';
 
 class TimeTableProvider extends ChangeNotifier {
-  List<int?> _timetable = List<int?>.generate(144, (index) => null);
+  late Map<String, Todo>? todoList;
+  late List<String?> _timetable;
+  TimeTableProvider(this.todoList) {
+    _timetable = List<String?>.generate(144, (index) => null);
+    if (todoList != null) {
+      todoList!.forEach((key, value) {
+        print(value.id);
+      });
+      changeId(todoList!);
+    }
+  }
 
-  List<int?> get timetable => _timetable;
+  List<String?> get timetable => _timetable;
 
-  void changeId(Map<int, Schedule> todoList) {
-    _timetable = List<int?>.generate(144, (index) => null);
+  void changeId(Map<String, Todo> todoList) {
+    _timetable = List<String?>.generate(144, (index) => null);
     todoList.forEach((key, todo) {
       for (var time = todo.start; time <= todo.end; time++) {
         if (todo.onTable) {
@@ -15,6 +27,7 @@ class TimeTableProvider extends ChangeNotifier {
         }
       }
     });
+    print(_timetable);
     notifyListeners();
   }
 }
