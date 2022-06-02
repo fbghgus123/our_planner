@@ -9,9 +9,6 @@ class TimeTableProvider extends ChangeNotifier {
   TimeTableProvider(this.todoList) {
     _timetable = List<String?>.generate(144, (index) => null);
     if (todoList != null) {
-      todoList!.forEach((key, value) {
-        print(value.id);
-      });
       changeId(todoList!);
     }
   }
@@ -27,7 +24,6 @@ class TimeTableProvider extends ChangeNotifier {
         }
       }
     });
-    print(_timetable);
     notifyListeners();
   }
 }

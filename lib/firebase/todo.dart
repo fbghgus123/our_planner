@@ -25,7 +25,6 @@ class TodoDB {
   void getTodos() async {
     Map<String, Todo> tmp = {};
     await ref.onValue.listen((event) {
-      print("업데이트 되었습니다");
       if (event.snapshot.value != null) {
         Map<dynamic, dynamic> data =
             event.snapshot.value as Map<dynamic, dynamic>;
@@ -69,6 +68,14 @@ class TodoDB {
       "onTable": value,
       "start": start,
       "end": end,
+    });
+  }
+
+  void updateTodoInfo(String id, int color, String title, String content) {
+    ref.child(id).update({
+      "title": title,
+      "content": content,
+      "color": color,
     });
   }
 }

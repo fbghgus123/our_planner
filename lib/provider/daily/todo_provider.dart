@@ -34,4 +34,8 @@ class TodoProvider extends ChangeNotifier {
   void addTodo() {
     _todoDB.addTodo();
   }
+
+  void updateTodoInfo(String id, int color, String title, String content) {
+    _todoDB.updateTodoInfo(id, color, title, content);
+  }
 }

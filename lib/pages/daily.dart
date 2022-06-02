@@ -32,12 +32,6 @@ class _DailyState extends State<Daily> {
         body: SafeArea(
       child: SingleChildScrollView(
         child: Column(children: [
-          // 달력 내리기
-          Container(
-            height: 30,
-            color: Colors.grey,
-          ),
-
           // 상단 날짜 + D-day
           Padding(padding: EdgeInsets.only(top: 10.0), child: DateWidget()),
 
