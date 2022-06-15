@@ -1,16 +1,8 @@
 # our_planner
 
-우리의 플래너
+우리의 플래너 입니다.
+사용하기 편리하고 쉬운 UI/UX를 위해 고민하며 만들고 있습니다.
 
-## Getting Started
+<img width="265" alt="image" src="https://user-images.githubusercontent.com/74997185/173776085-2d0ed36b-41f4-4137-940f-43235b672843.png">
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
