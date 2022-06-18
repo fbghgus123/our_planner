@@ -6,5 +6,3 @@
 
 <img width="719" alt="image" src="https://user-images.githubusercontent.com/74997185/173776298-bc0c292f-3105-4ac1-905a-8227a3db6aab.png">
 
-제작기간: 2022.04.18 ~
-
